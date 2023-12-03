@@ -1,4 +1,4 @@
-import styles from './rightbar.modules.css'
+import styles from './rightbar.module.css'
 
 const Rightbar = () => {
   return (
