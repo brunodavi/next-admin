@@ -12,7 +12,7 @@ const AddProductPage = () => {
           <option value="computer">Computer</option>
         </select>
         <input type="number" placeholder="price" name="price" />
-        <input type="number" placeholder="stack" name="stack" />
+        <input type="number" placeholder="stock" name="stock" />
         <input type="text" placeholder="color" name="color" />
         <input type="text" placeholder="size" name="size" />
         <textarea

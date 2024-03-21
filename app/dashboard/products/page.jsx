@@ -21,7 +21,7 @@ const ProductsPage = () => {
             <td>Description</td>
             <td>Price</td>
             <td>Created At</td>
-            <td>Stack</td>
+            <td>Stock</td>
             <td>Action</td>
           </tr>
         </thead>

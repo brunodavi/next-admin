@@ -16,7 +16,7 @@ const SingleProductPage = () => {
           <input type="text" name="title" placeholder='Iphone' />
           <label>Price</label>
           <input type="number" name="price" placeholder='$6.000' />
-          <label>Stack</label>
+          <label>Stock</label>
           <input type="number" name="stock" placeholder="23" />
           <label>Color</label>
           <input type="text" name="color" placeholder='blue' />
