@@ -6,7 +6,7 @@ const AddUserPage = () => {
       <form action="" className={styles.form}>
         <input type="text" placeholder="username" name="username" required />
         <input type="email" placeholder="email" name="email" required />
-        <input type="password" placeholder="password" name="password" required />
+        <input type="password" name="password" required />
         <input type="phone" placeholder="phone" name="phone" required />
         <select name="isAdmin" id="isAdmin">
           <option value={false} selected>Is Admin?</option>
