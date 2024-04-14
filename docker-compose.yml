@@ -1,0 +1,37 @@
+version: "3"
+
+services:
+  next-admin:
+    container_name: next-admin-app
+    build: 
+      context: .
+      network: host
+    depends_on:
+      - mongo
+    env_file:
+      - .env
+    volumes:
+      - ./app:/app/app
+      - ./public:/app/public
+    restart: always
+    ports:
+      - 3000:3000
+    networks:
+      - my_network
+
+  mongo:
+    container_name: next-admin-db
+    image: mongo:4.4.29
+    restart: always
+    volumes:
+      - mongo:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - my_network
+
+networks:
+  my_network:
+
+volumes:
+  mongo:
