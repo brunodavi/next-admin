@@ -91,8 +91,6 @@ const Sidebar = async () => {
   const avatar = user?.img || '/noavatar.png'
   const userTitle = user?.isAdmin ? 'Administrator' : 'User'
 
-  console.log(user)
-
   return (
     <div className={styles.container}>
       <div className={styles.user}>
