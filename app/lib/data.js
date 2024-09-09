@@ -1,4 +1,4 @@
-import { User } from "./models";
+import { User, Product } from "./models";
 import { ITEM_PER_PAGE } from "./settings";
 import { connectToDB } from "./utils";
 
@@ -8,11 +8,6 @@ export const fetchUsers = async (q, page) => {
 
   try {
     let count = await User.countDocuments()
-    count = await populateUser(count)
-
-    if (count === null) {
-      count = await User.countDocuments()
-    }
 
     const users = await User
       .find({ username: { $regex: regex } })
@@ -27,37 +22,46 @@ export const fetchUsers = async (q, page) => {
   }
 };
 
-async function populateUser(count) {
-  if (count > 0) return count
+export const fetchUser = async (id) => {
+  await connectToDB();
 
-  await User.create({
-    img: 'https://images.pexels.com/photos/14807470/pexels-photo-14807470.jpeg?auto=compress&cs=tinysrgb&w=256&dpr=1',
-    username: 'Steve Robert',
-    email: 'steve_robert@gmail.com',
-    password: '1234567890',
-    phone: '2987654321',
-    address: 'New York',
-    createdAt: new Date(2023, 6, 15),
-    isAdmin: true,
-  })
+  try {
+    const user = await User.findById(id)
+    return user;
+  } catch (err) {
+    console.error(err);
+    throw new Error("Failed to fetch user!");
+  }
+};
 
-  await User.create({
-    img: 'https://images.pexels.com/photos/428364/pexels-photo-428364.jpeg?auto=compress&cs=tinysrgb&w=256&dpr=1',
-    username: 'John Due',
-    email: 'john_due@gmail.com',
-    password: '1234567890',
-    phone: '0987654321',
-    address: 'Londress',
-  })
+export const fetchProducts = async (q, page) => {
+  const regex = new RegExp(q, "i");
+  await connectToDB();
 
-  await User.create({
-    img: 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=256&dpr=1',
-    username: 'Jena Due',
-    email: 'jena_due@gmail.com',
-    password: '1234567890',
-    phone: '1987654321',
-    address: 'Londress',
-  })
+  try {
+    let count = await Product.countDocuments()
 
-  return null
-}
+    const products = await Product
+      .find({ title: { $regex: regex } })
+      .limit(ITEM_PER_PAGE)
+      .skip(ITEM_PER_PAGE * (page - 1))
+      .exec();
+
+    return { count, products };
+  } catch (err) {
+    console.error(err);
+    throw new Error("Failed to fetch users!");
+  }
+};
+
+export const fetchProduct = async (id) => {
+  await connectToDB();
+
+  try {
+    const product = await Product.findById(id)
+    return product;
+  } catch (err) {
+    console.error(err);
+    throw new Error("Failed to fetch product!");
+  }
+};

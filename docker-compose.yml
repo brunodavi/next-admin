@@ -1,5 +1,3 @@
-version: "3"
-
 services:
   next-admin:
     container_name: next-admin-app

@@ -1,7 +1,7 @@
 "use client";
 
-import { ITEM_PER_PAGE } from "@/app/lib/settings";
 import styles from "./pagination.module.css";
+import { ITEM_PER_PAGE } from "@/app/lib/settings";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const Pagination = ({ count }) => {
@@ -9,12 +9,12 @@ const Pagination = ({ count }) => {
   const pathname = usePathname();
   const router = useRouter();
 
-  const page = parseInt(searchParams.get("page") || "1");
+  const page = parseInt(searchParams.get("page") || 1);
 
   const params = new URLSearchParams(searchParams);
 
   const hasPrev = ITEM_PER_PAGE * (page - 1) > 0;
-  const hasNext = ITEM_PER_PAGE * (page - 1) + ITEM_PER_PAGE < count;
+  const hasNext = (ITEM_PER_PAGE * (page - 1) + ITEM_PER_PAGE) < count;
 
   const setPage = (value) => {
     params.set("page", value)

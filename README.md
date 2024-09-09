@@ -10,7 +10,7 @@ Dashboard with mongodb and nextjs 14
 ### Env Default
 ```env
 MONGO_URL=mongodb://mongo:27017/db
-ITEM_PER_PAGE=2
+NEXT_PUBLIC_ITEM_PER_PAGE=2
 ```
 
 > Defaults of defined environments in `app/lib/settings.js`
