@@ -5,8 +5,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { User, Product } from "./models";
 import { connectToDB } from "./utils";
-import { signIn } from "@/auth.js";
-import { AuthError } from 'next-auth';
+import { signIn } from "../auth";
 
 export const addUser = async (formData) => {
   const {
@@ -60,9 +59,13 @@ export const updateUser = async (formData) => {
   try {
     connectToDB()
 
+    // const salt = await bcrypt.genSalt(10)
+    // const hashedPassword = await bcrypt.hash(password, salt)
+
     const updateFields = {
       username,
       email,
+      // password: hashedPassword,
       password,
       phone,
       address,
@@ -195,21 +198,15 @@ export const updateProduct = async (formData) => {
   redirect("/dashboard/products")
 }
 
-// export const authenticate = async (formData) => {
-//   const { username, password } = Object.fromEntries(formData)
-//
-//   try {
-//     await signIn("credentials", { username, password })
-//   } catch (err) {
-//     throw err
-//   }
-// }
+export const authenticate = async (_prevState, formData) => {
+  const { username, password } = Object.fromEntries(formData);
 
-export async function authenticate(_prevState, formData) {
   try {
-    await signIn('credentials', formData);
-  } catch (error) {
-    console.log(error)
-    throw error;
+    await signIn("credentials", { username, password });
+  } catch (err) {
+    if (err.message.includes("CredentialsSignin")) {
+      return "Wrong Credentials";
+    }
+    throw err;
   }
-}
+};

@@ -24,11 +24,17 @@ export const connectToDB = async () => {
 
 
 async function populateUser() {
+  const hashedPasswords = [
+    '$2b$10$99x.7xbAb78U/hBKZ17HE.7MQSrgou/H4P.JMNQpJAQAJxDqzemXa',
+    '$2b$10$rItqrUJtA0wFircAoL6qJ.otNAgdi1vBOIoJmVO5/iI4cN.mn3cn6',
+    '$2b$10$PSgMMReaEZiIk4hTlmwv5OjJJXRlQyqe9c8iMlTnmMVYItOyi1AJu'
+  ] // all 1234567890
+
   await User.create({
     img: 'https://images.pexels.com/photos/14807470/pexels-photo-14807470.jpeg?auto=compress&cs=tinysrgb&w=256&dpr=1',
     username: 'Steve Robert',
     email: 'steve_robert@gmail.com',
-    password: '1234567890',
+    password: hashedPasswords[0],
     phone: '2987654321',
     address: 'New York',
     createdAt: new Date(2023, 6, 15),
@@ -39,7 +45,7 @@ async function populateUser() {
     img: 'https://images.pexels.com/photos/428364/pexels-photo-428364.jpeg?auto=compress&cs=tinysrgb&w=256&dpr=1',
     username: 'John Due',
     email: 'john_due@gmail.com',
-    password: '1234567890',
+    password: hashedPasswords[1],
     phone: '0987654321',
     address: 'Londress',
   })
@@ -48,7 +54,7 @@ async function populateUser() {
     img: 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=256&dpr=1',
     username: 'Jena Due',
     email: 'jena_due@gmail.com',
-    password: '1234567890',
+    password: hashedPasswords[2],
     phone: '1987654321',
     address: 'Londress',
   })
