@@ -1,0 +1,50 @@
+.header {
+  height: 50px;
+  background-color: var(--bgSoft);
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  flex: 1;
+}
+
+.signIn {
+  display: flex;
+  width: 100px;
+  height: 35px;
+  border: white, solid, 1px;
+  border-radius: 5px;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.signIn {
+  color: var(--textSoft);
+}
+
+.signIn:hover {
+  color: var(--text);
+  background-color: #222a3b
+}
+
+.icon {
+  flex: 1;
+}
+
+.content {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.subtitle {
+  padding: 5px;
+}
+
+.item {
+  padding-top: 30px;
+}

@@ -30,6 +30,18 @@ async function populateUser() {
     '$2b$10$PSgMMReaEZiIk4hTlmwv5OjJJXRlQyqe9c8iMlTnmMVYItOyi1AJu'
   ] // all 1234567890
 
+  const adminPassword = '$2b$10$jTG07/1nTZu51XKflopscO4sn8KaUfI46RHnqQE1j04W5ouoKpc8W'
+
+  await User.create({
+    username: 'admin',
+    email: 'admin@gmail.com',
+    password: adminPassword,
+    phone: '2987654322',
+    address: 'New York',
+    createdAt: new Date(2024, 6, 15),
+    isAdmin: true,
+  })
+
   await User.create({
     img: 'https://images.pexels.com/photos/14807470/pexels-photo-14807470.jpeg?auto=compress&cs=tinysrgb&w=256&dpr=1',
     username: 'Steve Robert',
